@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Parse Text";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Script
+{
+    <script src="../../scripts/Angular/vendor/angular.js"></script>
+    <script src="../../scripts/Angular/minified/modules.js"></script>
+    <script src="../../scripts/Angular/constant/urlConstants.js"></script>
+    <script src="../../scripts/Angular/services/fileSender.js"></script>
+    <script src="../../scripts/Angular/controller/parseTextController.js"></script>
+
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+    </div>
+
+</div>
+<div class="ui container grid" data-ng-app="app">
+    <div class="ui fourteen wide column centered" data-ng-controller="validationController">
+
+
+        <h3 class="ui dividing header header-text">Parse text</h3>
+
+        <form class="ui form">
+
+
+
+            <div class="ui segment">
+
+                <div class="ui grid pr">
+                    <div class="eight wide column">
+                        <div class="ui grid pr">
+                            <div class="ui inverted dimmer" data-ng-class="isSendingDocumentData()">
+                                <div class="ui text loader">Parsing</div>
+                            </div>
+                            <div class="sixteen wide column">
+                                <div class="ui segment">
+
+                                    <div class="field">
+                                        <div class="ui radio">
+                                            <input tabindex="0" type="radio" value="1" id="amharic" checked="checked" name="lang" ng-model="lang">
+                                            <label for="amharic">Amharic</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui radio">
+                                            <input tabindex="0" value="2" type="radio" id="english" name="lang" ng-model="lang">
+                                            <label for="english">English</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="ui row">
+                                        <div class="ui button blue fc_i" data-ng-click="sendDocument()">parse text</div>
+                                    </div>
+                                    <input type="file"
+                                           id="fileUpload"
+                                           name="File"
+                                           hidden="hidden"
+                                           onchange="angular.element(this).scope().postImageChanged(this)" />
+                                </div>
+
+
+                            </div>
+                            <div class="sixteen wide column">
+                                <h3 class="grey">UPLOAD IMAGE </h3>
+                                <div class="img_con lightRedBI">
+
+                                    <label for="fileUpload">
+                                        <!--src="../../images/certificate.PNG"-->
+                                        <img id="imgPreview">
+
+                                        <div class="overlay">
+                                            <i class="ui icon photo"></i>
+                                            <p>Upload Image</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="ui row">
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="eight wide column">
+                        <div class="ui segment">
+                            <h4>parsed text result</h4>
+                            <div class="ui divider">
+
+                            </div>
+                            <div class="ui form">
+                                <div class="ui field">
+                                    <p>@ViewBag.ParsedText</p>
+                                    <textarea rows="50">{{parsedText}}</textarea>
+                                </div>
+                            </div>
+                            <div class="ph"></div>
+                            <div class="ph"></div>
+                            <div class="ph"></div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="ui divider"></div>
+
+
+            </div>
+
+        </form>
+
+
+    </div>
+</div>

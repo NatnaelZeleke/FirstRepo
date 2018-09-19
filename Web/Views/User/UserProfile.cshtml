@@ -1,0 +1,47 @@
+﻿@model Web.ViewModels.UserAccountViewModel
+
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("MyAccount")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="tc">ፕሮፋይል</span></p>
+    </a>
+</div>
+
+
+
+<div class="ui container main_con">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+                 <br>
+
+                    <div class="ui form profile segment">
+                        <div class="ui field">
+                            <p class="hd">ሙሉ ስም</p>
+                            <h2 class="val">@Model.User.UserName</h2>
+                        </div>
+                        <div class="ui field">
+                            <p class="hd">ስልክ ቁጥር</p>
+                            <h2 class="val">@Model.User.PhoneNumber</h2>
+                        </div>
+                        <div class="ui field">
+                            <p class="hd">ኢሜል</p>
+                            <h2 class="val">@Model.User.Email</h2>
+                        </div>
+                        <div class="ui field">
+                            <p class="hd">አካውንቶ መስራት የሚያበቃበት ቀን</p>
+                            <h2 class="val">@Model.Account.AccountExpirationDate.ToString("yyyy MMMM dd")</h2>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+ 

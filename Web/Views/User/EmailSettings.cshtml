@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Web.ViewModels.TenderTypeViewModel>
+@{
+    ViewBag.Title = "Email Settings";
+    Layout = "~/Views/Shared/_LayoutSignIn.cshtml";
+}
+
+@section Script
+{
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/semantic.min.js"></script>    
+    <script>
+        $(document).ready(function () {
+            $('#chooseTenderType').form({
+                fields: {
+                    SelectedTenderTypeIdForEmail: {
+                        identifier: 'SelectedTenderTypeIdForEmail',
+                        rules: [
+                            {
+                                type   : 'checked',
+                                prompt : 'ቢያንስ አንድ የጨረታ አይነት መምረጥ አለቦት'
+                            }
+                        ]
+                    }
+                },
+                on: 'submit',
+                onSuccess:function (response) {
+                    $("#chooseTenderType").addClass("loading");
+                }
+            });
+        });
+    </script>
+}
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("MyAccount")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="tc">የጨረታ አይነት መምረጫ</span></p>
+    </a>
+</div>
+
+
+@using (Html.BeginForm("EditTenderTypeIdForEmail", "User", FormMethod.Post, new { @class = "ui form", role = "form",id="chooseTenderType" }))
+{
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+    <div class="ui container main_con">
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="sc">
+                    <br/>
+                    <div class="ui segment">
+                        <p class="sn d_i_b">ምን አይነት ጨረታ በኢሜሎ እንዲላክሎት ይፈልጋሉ</p>
+                    </div>
+                    <div class="ui error message"></div>
+                    <div class="ui segments fourteen wide column" id="other">
+                        <div class="ui segment">
+                                <div class="ui radio">
+                                    
+                                    <input checked="" name="SelectedTenderTypeIdForEmail" type="radio" value="0">                                                                       
+                                    <label>Don't send to my email</label>
+                                </div>
+                        </div>
+                        @foreach (var tt in Model)
+                        {
+                            <div class="ui segment">
+                                <div class="ui radio">
+                                    @if (tt.Selected)
+                                    {
+                                        <input checked="" name="SelectedTenderTypeIdForEmail" type="radio" value="@tt.Id">
+                                    }
+                                    else
+                                    {
+                                        <input name="SelectedTenderTypeIdForEmail" type="radio" value="@tt.Id">
+                                    }
+
+                                    <label>@tt.Name (@tt.NameAmharic)</label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="ph"></div>
+                    <div class="ph"></div>
+                    <div class="ph"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ph"></div>
+
+    <div class="footer">
+        <div class="ui one item menu" style="padding: 10px;">
+            <div class="bc fc">
+                <button type="submit" class="ui button fc_i orange">ሴቭ</button>
+                <a href="@Url.Action("MyAccount")" type="submit" class="ui button fc_i basic">ተመለስ</a>
+            </div>
+            
+        </div>
+    </div>
+
+}

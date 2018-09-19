@@ -1,0 +1,47 @@
+﻿@model Domain.Infrastructure.Tender
+
+@{
+    ViewBag.Title = "Delete Tender";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+ 
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Delete Tender</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+                    @using (Html.BeginForm("DeleteTender", "Tender", FormMethod.Post, new { @class = "ui form", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                         
+                        <div class="field">
+                            <label>Tender Title </label>
+                            <h3>@Model.TenderTitle</h3>
+                        </div>
+                        <div class="field">
+                            <p class="ui red">ARE YOU SURE YOU WANT TO DELETE THIS TENDER</p>
+                        </div>
+                        @Html.HiddenFor(model => model.Id)
+                        <button class="ui button red" type="submit">Delete</button>
+                        @Html.ActionLink("Cancel", "Index", new {}, new { @class = "ui button" })
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

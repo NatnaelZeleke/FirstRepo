@@ -1,0 +1,195 @@
+﻿@model Web.ViewModels.LandingPageViewModel
+@{
+    ViewBag.Title = "chereta.net";
+    Layout = "~/Views/Shared/_LayoutSignIn.cshtml";
+    var count = 1;
+}
+@section Script
+{
+    <script src="~/Scripts/common.js"></script>
+}
+
+<div class="ui one item fixed menu c_h">
+    <div class="item">
+        <p>ጨረታ</p>
+    </div>
+</div>
+
+
+
+<div class="main_con">
+    <div class="lmc">
+        <div class="header background-img" style="background-image: url('../../Content/Images/header.jpg')">
+
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+                <div class="ui vertical stripe quote segment">
+                    <br/>
+                    <div class="ui two item menu">
+                        <a class="item" href="@Url.Action("SignUp", "Account")">ተመዝገብ</a>
+                        <a class="item" href="@Url.Action("Login", "Account")">ግባ</a>
+                    </div>
+                    <p></p>
+                </div>
+
+                <div class="ui vertical stripe quote segment">
+                    <div class="motto_con">
+                        <p class="fc head"></p>
+                        <p class="fc exp">
+                            ማንኛውም ጨረታ አያምልጦ <br>ከየትኛውም ጋዜጣ ከየትኛውም ዘርፍ
+                            በየትኛውም ቦታ
+                            ከደንበኞች አገልግሎት ጋር
+                        </p>
+
+                        <div class="mon_con">
+                            <p class="fc exp">
+                                ለ <label class="ui label circular lc">12</label> ወራት በ 1,100 ብር ብቻ
+                            </p>
+                            <p class="fc exp">
+                                ለ <label class="ui label circular lc">6</label> ወራት በ 700 ብር ብቻ
+                            </p>
+                            <p class="fc exp">
+                                ቫትን ጨምሮ
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="ui vertical stripe quote segment">
+                    <br/>
+                    <div class="ui segment">
+                        <p class="fc exp">ዛሬ ከወጡት ጨረታዎች መካከል</p>
+                    </div>
+                    <br/>
+                    @foreach (var t in Model.Tenders)
+                    {
+                        <div>
+                            <div class="ui segments fourteen wide column tender pr">
+
+                                <div class="ui segment th">
+                                    <p class="tt">@t.TenderTitle</p>
+                                    <p class="tty">@t.TenderType.NameAmharic</p>
+                                </div>
+                                <div class="ui segment">
+                                    <div class="content">
+
+                                        @{
+                                            var od = t.OpeningDay != null ? t.OpeningDay?.ToString("yyyy MMMM dd h:mm tt") : "ያልተገለጸ";
+                                            var cd = t.ClosingDay != null ? t.ClosingDay?.ToString("yyyy MMMM dd h:mm tt"): "ያልተገለጸ";
+                                            
+                                        }
+                                        <p class="od"><i class="icon calendar orange"></i>መክፈቻ ቀን :
+                                            
+                                            @od
+                                        </p>
+                                        <p class="cd"><i class="icon calendar orange"></i>መዝጊያ ቀን : @cd</p>
+                                    </div>
+                                    <div class="content">
+                                        <div class="description clearfix">
+                                            <div class="ui accordion">
+                                                <div class="title tc">
+                                                    <i class="dropdown icon"></i>
+                                                    ተጨማሪ መረጃ
+                                                </div>
+                                                <div class="content mi">
+
+                                                    <p class="sp des">
+                                                        <i class="ui icon chevron circle right "></i> @t.Description
+                                                    </p>
+                                                    <p class="sp">
+                                                        <i class="ui icon chevron circle right"></i> @t.Address
+                                                    </p>
+                                                    <p class="sp">
+                                                        <i class="ui icon chevron circle right"></i>ፖስት የተደረገበት ቀን : @t.PostedOn.ToString("yyyy MMMM dd h:mm")
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui segment np inverted blue">
+                                    <p>ከ <span>@t.NewsPaper.NameAmharic</span> የ @t.NewsPaperPublishDate.ToString("M") እትም
+                                    </p>
+                                </div>
+                            </div>
+                            <h4 class="ui horizontal divider header d_h">@count</h4>
+                            <p></p>
+                        </div>
+                        count++;
+                    }
+                </div>
+
+
+                <div class="ui vertical stripe quote segment">
+                    <p></p>
+                    <div class="ui segment">
+                        <div class="ui segment fc">
+                            እስከ አሁን የወጡት አጠቃላይ የጨረታ ሪፖርት
+                        </div>
+                        <table class="ui celled padded table unstackable">
+                            <thead>
+                                <tr>
+                                    <th class="line">የጋዜጣው አይነት</th>
+                                    <th>የጨረታ ብዛት</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var np in Model.NewsPapers)
+                                {
+                                    <tr>
+                                        <td>
+                                            <h4 class="ui center aligned header">ከ @np.NameAmharic</h4>
+                                        </td>
+                                        <td class="line">
+                                            @np.Count ጨረታ
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="ui vertical stripe quote segment ">
+                    <br/>
+                    <p class="fc">በየቀኑ የሚወጡ ሁሉንም ጨረታዎች ለማየት ይመዝገቡ</p>
+                    <br/>
+                    <div class="ui two item menu inverted blue">
+                        <a class="item" href="@Url.Action("SignUp", "Account")">ተመዝገብ</a>
+                        <a class="item" href="@Url.Action("Login", "Account")">ግባ</a>
+                    </div>
+                    <p></p>
+                </div>
+
+                <div class="ui vertical stripe quote segment">
+                    <div class="ui equal width stackable internally celled grid">
+                        <div class="center aligned row">
+
+                            <div class="column">
+                                <h3>አድረሻ</h3>
+                                <p>ሲቪል ሰርቪስ ዩኒቨርስቲ ፊትለፊት ፓልም ህንጻ 6ኛ ፎቅ አዲስ አበባ</p>
+                                <p>0118931990</p>
+                                <p>0924144733</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui inverted segment">
+                    <p>ጨረታ &copy; Copyright 2018</p>
+                    <a href="@Url.Action("RegisterAsSalesMan","Account")">Regiter as a sales man</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

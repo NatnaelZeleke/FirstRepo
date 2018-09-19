@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Web.ViewModels.TenderViewModel>
+
+@{
+    ViewBag.Title = "Tenders";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var count = 1;
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+    </div>
+</div>
+<div class="ui container grid">
+    <div class="ui fifteen wide column centered">
+
+        <div class="ui grid">
+            <div class="ui text container">
+                <h2 class="ui dividing header">List of Tenders posted</h2>
+                <p></p>
+            </div>
+            <div class="ui  text container">
+             
+                @Html.ActionLink("Create new Tender","AddTender",new {},new {@class="ui basic blue mini button right floated"})
+            </div>
+            <div class="sixteen wide computer column">
+                 @if (!Model.Any())
+                 {
+                     <div class="ui grid">
+                        <h3>You have not created any tender yet. @Html.ActionLink("Create New Tender", "AddTender")</h3>
+                    </div>
+                 }
+                 else
+                 {
+                     <table class="ui selectable celled table compact">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>  
+                                <th>Type</th>    
+                                <th>Address</th>    
+                                <th>Posted on</th>                                 
+                                <th>more</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var t in Model)
+                            {
+
+                                <tr>
+                                    <td>@count</td>
+                                     
+                                    <td>@t.TenderTitle</td>
+                                    <td>@t.TenderType.Name</td>
+                                    <td>@t.Address</td>
+                                    <td>@t.PostedOn.ToString("dd MMMM yyyy")</td>
+                                    <td>
+                                        @Html.ActionLink("more","Tender",new {id=t.Id},new {@class="ui button blue basic mini"})                                         
+                                    </td>
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+
+                    </table>
+                 }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

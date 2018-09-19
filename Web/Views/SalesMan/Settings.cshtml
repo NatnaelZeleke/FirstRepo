@@ -1,0 +1,38 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_LayoutSalesMan.cshtml";
+}
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("Account","SalesMan")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="tc">ማስተካከያ</span></p>
+    </a>
+</div>
+
+
+<div class="ui container main_con">
+
+    <div class="ui container">
+        <div class="ui grid">
+             
+            <div class="sc">
+                <p></p>
+                <div class="ui container">
+                    
+                    
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "item" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button class="ui button small basic">ውጣ</button>
+                    }
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

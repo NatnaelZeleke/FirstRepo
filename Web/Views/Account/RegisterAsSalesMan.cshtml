@@ -1,0 +1,61 @@
+﻿@model Web.ViewModels.SignUpViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutSignIn.cshtml";
+}
+ 
+
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("Index","Home")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="bl">ለሴልስ ማን ይመዝገቡ</span></p>
+    </a>
+</div>
+
+<div class="ui container main_con">
+
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+
+                <div class="ph"></div>
+
+                
+                
+                @using (Html.BeginForm("RegisterAsSalesMan", "Account", FormMethod.Post, new { @class = "ui form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>ሴልስ ማን ለመሆን ይመዝገቡ</h4>
+                    
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="ui field">
+                        <small>ኢሜል (e.g fullname@chereta.net)</small>
+                        @Html.TextBoxFor(model => model.Email)                         
+                    </div>
+                    <div class="ui field">
+                        <small>ሙሉ ስም</small>
+                        @Html.TextBoxFor(model => model.FullName)                         
+                    </div>
+                    <div class="ui field">
+                        <small>ስልክ ቁጥር</small>
+                        @Html.TextBoxFor(model => model.PhoneNumber)                         
+                    </div>
+                    <div class="ui field">
+                        <small>የይለፍ ቃል (password)</small>
+                        @Html.PasswordFor(model => model.Password)
+                         
+                    </div>
+                    <div class="ui field">
+                        <small>የይለፍ ቃል ድጋሚ ያስገቡ (enter password again)</small>
+                        @Html.PasswordFor(model => model.ConfirmPassword)
+                         
+                    </div>
+                    <br>
+                    <button class="ui button orange" type="submit">ጨርስ</button>
+                }
+               
+            </div>
+        </div>
+
+    </div>
+</div>

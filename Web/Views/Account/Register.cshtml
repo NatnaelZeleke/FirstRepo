@@ -1,0 +1,59 @@
+﻿@model Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutSignIn.cshtml";
+}
+ 
+
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("Login")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="bl">Sign Up</span></p>
+    </a>
+</div>
+
+<div class="ui container main_con">
+
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+
+                <div class="ph"></div>
+
+                
+                
+                @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { @class = "ui form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>አዲስ አካውንት ይፍጠሩ</h4>
+                    
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="ui field">
+                        <small>ኢሜል</small>
+                        @Html.TextBoxFor(model => model.Email)                         
+                    </div>
+                    <div class="ui field">
+                        <small>ሙሉ ስም</small>
+                        @Html.TextBoxFor(model => model.FullName)                         
+                    </div>
+                    <div class="ui field">
+                        <small>የይለፍ ቃል</small>
+                        @Html.PasswordFor(model => model.Password)
+                         
+                    </div>
+                    <div class="ui field">
+                        <small>የይለፍ ቃል </small>
+                        @Html.PasswordFor(model => model.ConfirmPassword)
+                         
+                    </div>
+                    <br>
+                    <button class="ui button orange" type="submit">Register</button>
+                }
+                
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

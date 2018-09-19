@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Cofirmation Page";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column"></div>
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Account Confimration Page</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+
+                <div class="ui segment">
+
+                    <table class="ui celled striped table">
+                        <thead>
+                        <tr>
+                            <th colspan="3">
+                                @ViewBag.Message
+                            </th>
+                        </tr>
+                        </thead>
+                        
+                    </table>
+
+                </div>
+                <div class="ui segment">
+
+                    <table class="ui celled striped table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Account Information
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td class="right aligned">
+                                    Registered On Chereta Application
+                                </td>
+                                <td>@Model.Account.RegisteredOn</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    Accounut Expiration Date
+                                </td>
+                                <td>@Model.Account.AccountExpirationDate</td>
+                            </tr> 
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="ui segment">
+
+                    @Html.ActionLink("Back", "Index", new {}, new { @class = "ui button green" })
+                     
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

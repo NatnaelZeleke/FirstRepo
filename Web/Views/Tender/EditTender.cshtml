@@ -1,0 +1,147 @@
+﻿@model Web.ViewModels.TenderViewModel
+
+@{
+    ViewBag.Title = "Add Tender";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    var od = Model.OpeningDay?.ToString("dd MMMM yyyy hh:mm tt");
+    var cd = Model.ClosingDay?.ToString("dd MMMM yyyy hh:mm tt");
+    
+}
+@section Script
+{
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            
+            $('.datep_time_picker').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('.date_picker').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+        });
+    </script>
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui text container">
+                <h2 class="ui dividing header">Edit Tender</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+                    @using (Html.BeginForm("EditTender", "Tender", FormMethod.Post, new { @class = "ui form error", role = "form" }))
+                    {
+
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        <div class="ui field">
+                            <label>Tender Title</label>
+                            @Html.TextAreaFor(model => model.TenderTitle)
+                        </div>
+                        <div class="ui field">
+                            <label>Tender Type</label>
+                            <select name="TenderTypeId" class="ui dropdown">
+                                @foreach (var tt in Model.TenderTypes)
+                                {
+                                    if (tt.Id == Model.TenderTypeId)
+                                    {
+                                        <option value="@tt.Id" selected="selected">@tt.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@tt.Id">@tt.NameAmharic</option>
+                                    }
+
+                                }
+                            </select>
+
+                        </div>
+                            <div class="ui field">
+                                <label>Openng Day</label>
+                                <input name="OpeningDay" id="OpeningDay" value="@od" class="datep_time_picker" data-date-format="dd MM yyyy HH:ii P" readonly/>
+                                
+                            </div>
+                            <div class="ui field">
+                                <label>Closing Day</label>
+                                <input name="ClosingDay" id="ClosingDay" value="@cd" class="datep_time_picker" data-date-format="dd MM yyyy HH:ii P" readonly/>
+                               
+                            </div>
+                            <div class="ui field">
+                                <label>Description</label>
+                                @Html.TextAreaFor(model => model.Description)
+                            </div>
+                            <div class="ui field">
+                                <label>Address</label>
+                                @Html.TextBoxFor(model => model.Address)
+                            </div>
+                            <div class="ui field">
+                                <label>News Paper</label>
+                                <select name="NewsPaperId" class="ui dropdown">
+                                    @foreach (var np in Model.NewsPapers)
+                                    {
+                                        if (np.Id == Model.NewsPaperId)
+                                        {
+                                            <option value="@np.Id" selected="selected">@np.NameAmharic</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@np.Id">@np.Name</option>
+                                        }
+
+                                    }
+                                </select>
+
+                            </div>
+                            <div class="ui field">
+                                <label>News Paper Publish Date</label>
+                                <input name="NewsPaperPublishDate" id="NewsPaperPublishDate" value="@Model.NewsPaperPublishDate.ToString("dd MMMM yyyy")" class="date_picker" data-date-format="dd MM yyyy" readonly/> 
+                                
+                            </div>
+                            <div class="ui field">
+                                <button class="ui button primary" type="submit">Save</button>
+
+                                @Html.ActionLink("Cancel", "Index", new { }, new { @class = "ui button basic" })
+                            </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+

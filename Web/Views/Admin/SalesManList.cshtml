@@ -1,0 +1,77 @@
+﻿@model System.Collections.Generic.IEnumerable<Web.ViewModels.SalesManViewModel>
+
+@{
+    ViewBag.Title = "Sales Man list";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var count = 1;
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header header-text">List of Sales Man</h2>
+                <p></p>
+            </div>
+             
+            <div class="sixteen wide computer column">
+                 @if (!Model.Any())
+                 {
+                     <div class="ui grid">
+                        <h3>No sales man registered yet!!!</h3>
+                    </div>
+                 }
+                 else
+                 {
+                     <table class="ui selectable celled table compact">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Full Name</th>
+                                 
+                                <th>Phone Number</th>
+                                <th>Customers registered</th>
+                                <th>more</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@s.User.UserName</td>
+
+                                    <td>@s.User.PhoneNumber</td>
+
+                                    <td>@s.CustomersCount</td>
+
+                                    <td>
+                                        @Html.ActionLink("more", "SalesMan", new {id = s.User.Id}, new {@class = "ui button red basic mini"})
+                                    </td>
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+
+                    </table>
+                 }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

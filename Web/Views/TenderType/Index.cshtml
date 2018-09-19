@@ -1,0 +1,78 @@
+﻿@model System.Collections.Generic.IEnumerable<Domain.Infrastructure.TenderType>
+
+@{
+    ViewBag.Title = "Tender Type list";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var count = 1;
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Tender Type List</h2>
+                <p></p>
+            </div>
+            <div class="ui  text container">
+             
+                @Html.ActionLink("Create new Tender types","AddTenderType",new {},new {@class="ui basic blue mini button right floated"})
+            </div>
+            <div class="sixteen wide computer column">
+                 @if (!Model.Any())
+                 {
+                     <div class="ui grid">
+                        <h3>You have not created any tender types yet. @Html.ActionLink("Create New Tender types", "AddTenderType")</h3>
+                    </div>
+                 }
+                 else
+                 {
+                     <table class="ui selectable celled table compact">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                 
+                                <th>Name Amaharic</th>
+                                <th>more</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tt in Model)
+                            {
+
+                                <tr>
+                                    <td>@count</td>
+                                     
+                                    <td>@tt.Name</td>
+                                    <td>@tt.NameAmharic</td>
+                                     
+                                    <td>
+                                        @Html.ActionLink("edit","EditTenderType",new {id=tt.Id},new {@class="ui button  basic mini"}) 
+                                        @Html.ActionLink("delete","DeleteTenderType",new {id=tt.Id},new {@class="ui button red basic mini"})                                                                     
+                                    </td>
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+
+                    </table>
+                 }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

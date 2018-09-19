@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="372661076e3d4c62bd6e5b20a820c306" Name="Diagram1">
+        <EntityTypeShape EntityType="AddisBidDbModel.Account" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.NewsPaper" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.Role" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.Tender" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.TenderType" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.UserClaim" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.UserLogin" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.User" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.UserSavedTender" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.UsersBySale" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddisBidDbModel.UserTenderTypeChoice" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <AssociationConnector Association="AddisBidDbModel.FK_Account_TenderType" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_Profile_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_Tender_NewsPaper" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_Tender_TenderType" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_UserSavedTender_Tender" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_dbo_UserClaims_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_dbo_UserLogins_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_UserSavedTender_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_UsersBySales_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.FK_UserTenderPreference_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AddisBidDbModel.UserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

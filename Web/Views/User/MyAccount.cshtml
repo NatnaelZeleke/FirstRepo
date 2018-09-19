@@ -1,0 +1,70 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "My Account";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+<div class="ui one item fixed menu c_h">
+    <div class="item">
+        <p>አካውንት</p>
+    </div>
+</div>
+
+<div class="ui container main_con">
+
+    <div class="ui container">
+        <div class="ui grid">
+
+            <div class="sc">
+                <p></p>
+                <div class="ui container">
+                    <div class="ui divided middle aligned selection list">
+
+                        <a href="@Url.Action("EditTenderTypes")" class="item">
+                            <div class="right floated content">
+                                <h5><i class="chevron right icon"></i></h5>
+                            </div>
+                            <div class="content">
+                                <div class="header">የጨረታ አይነት መምረጫ</div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("UserProfile")" class="item">
+                            <div class="right floated content">
+                                <h5><i class="chevron right icon"></i></h5>
+                            </div>
+                            <div class="content">
+                                <div class="header">ፕሮፋይል</div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("Settings")" class="item">
+                            <div class="right floated content">
+                                <h5><i class="chevron right icon"></i></h5>
+                            </div>
+                            <div class="content">
+                                <div class="header">ማስተካከያ</div>
+                            </div>
+                        </a>
+
+                        <a href="@Url.Action("EmailSettings")" class="item">
+                            <div class="right floated content">
+                                <h5><i class="chevron right icon"></i></h5>
+                            </div>
+                            <div class="content">
+                                <div class="header">ኢሜል ማስተካከያ</div>
+                            </div>
+                        </a>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

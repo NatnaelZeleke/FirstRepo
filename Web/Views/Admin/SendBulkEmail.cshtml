@@ -1,0 +1,71 @@
+﻿@model Web.ViewModels.SendEmailViewModel
+
+@{
+    ViewBag.Title = "Send Email to users";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@section Script
+{
+
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+         $(document).ready(function () {
+            
+             
+            $('.date_picker').datetimepicker({
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+            });
+        });
+    </script>
+}
+
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Send email in bulk for all users</h2>
+                <p class="ui dividing">please make sure you send email only once a day!</p>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+                    @using (Html.BeginForm("SendBulkEmail", "Admin", FormMethod.Post, new { @class = "ui form error", role = "form" }))
+                    {
+ 
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                            
+                        
+                        <div class="ui field">
+                            <label>Select news paper publish date</label>
+                            <input name="SelectionDate" id="NewsPaperPublishDate" class="date_picker" data-date-format="dd MM yyyy" readonly/> 
+                        </div>
+                        <div class="ui field">
+                            <button class="ui button primary" type="submit">Send Email</button>                                
+                            @Html.ActionLink("Cancel","SubAdminList",new {},new {@class="ui button basic"})
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

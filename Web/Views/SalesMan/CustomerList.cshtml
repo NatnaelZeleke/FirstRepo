@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Web.ViewModels.UsersBySalesViewModel>
+
+@{
+    ViewBag.Title = "List of customer";
+    Layout = "~/Views/Shared/_LayoutSalesMan.cshtml";
+}
+<div class="ui one item fixed menu c_h">
+    <div class="item">
+        <p>የመዘገቡት ደንበኛ</p>
+    </div>
+</div>
+
+<div class="ui container main_con">
+
+    <div class="ui container">
+        <div class="ui grid">
+
+            <div class="sc">
+                <div class="ph"></div>
+                <div class="ui segment">
+                    <i class="bar chart icon"></i> እስከ አሁን የመዘገቡት ደንበኛ
+                </div>
+                <div class="ui segment">
+                    <p> <a class="ui orange circular label"> <i class="user icon"></i> @Model.Count()</a>   ደንበኛ መዝገበዎል</p>
+                </div>
+                <div class="ui segment">
+                    <table class="ui celled padded table unstackable">
+                        <thead>
+                            <tr>
+                                <th class="line">ደንበኛ</th>
+                                <th>...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var u in Model)
+                            {
+                                                             
+                                <tr>
+                                    <td class="twd">
+                                        <p>@u.FullName</p>
+                                        <p>@u.PhoneNumber</p>
+                                        <small>@u.Email</small>
+                                    </td>
+                                    <td class="tws">
+                                        @if (u.Registered)
+                                        {
+                                            <p class="ui basic label">ተመዝግበዋል</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="ui label">አልተመዘገቡም</p>
+                                        }
+                                        @if (u.Paid)
+                                        {
+                                            <p class="ui green label">ከፍለዋል</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="ui label">አልከፈሉም</p>
+                                        }
+                                        
+                                      
+                                    </td>
+                                </tr>
+
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model Web.ViewModels.UsersBySalesViewModel
+
+@{
+    ViewBag.Title = "Add Customer";
+    Layout = "~/Views/Shared/_LayoutSalesMan.cshtml";
+}
+
+
+<div class="ui one item fixed menu c_h">
+    <div class="item">
+        <p>አዲስ ሰው መመዝገቢያ</p>
+    </div>
+</div>
+
+<div class="ui container main_con">
+
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+
+                <div class="ph"></div>
+
+
+
+                @using (Html.BeginForm("AddCustomer", "SalesMan", FormMethod.Post, new { @class = "ui form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <h4>አዲስ ሰው ይመዝግቡ</h4>
+                    <div class="ui field">
+                        <small>ሙሉ ስም</small>
+                        @Html.TextBoxFor(model => model.FullName)
+                    </div>
+                    <div class="ui field">
+                        <small>ስልክ ቁጥር</small>
+                        @Html.TextBoxFor(model => model.PhoneNumber)
+                    </div>
+                    
+                    <div class="ui field">
+                        <small>ኢሜል</small>
+                        @Html.TextBoxFor(model => model.Email)
+                    </div>
+                    
+                    
+                    
+                    <br>
+                    <button class="ui button orange" type="submit">መዝግብ</button>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</div>

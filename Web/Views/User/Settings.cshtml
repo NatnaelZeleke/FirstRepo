@@ -1,0 +1,82 @@
+﻿@model Web.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("MyAccount")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="tc">ማስተካከያ</span></p>
+    </a>
+</div>
+
+
+
+<div class="ui container main_con">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+                <div class="ph"></div>
+                <div class="field">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <p>ኢሜል</p>
+                        </div>
+                        <div class="ui secondary segment">
+                            <p class="d-i-l">@Model.Email</p>
+                            @Html.ActionLink("ቀየር", "EditEmail", "Profile", new { }, new { @class = "ui button ui button basic orange tiny right floated" })
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <p>ሙሉ ስም</p>
+                        </div>
+                        <div class="ui secondary segment">
+                            <p class="d-i-l">@Model.UserName</p>
+                            @Html.ActionLink("ቀየር", "EditUserName", "Profile", new { }, new { @class = "ui button ui button basic orange tiny right floated" })
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <p>ስልክ ቁጥር</p>
+                        </div>
+                        <div class="ui secondary segment">
+                            <p class="d-i-l">@Model.PhoneNumber</p>
+                            @Html.ActionLink("ቀየር", "EditPhoneNumber", "Profile", new { }, new { @class = "ui button ui button basic orange tiny right floated" })
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="field">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <p>የሚስጥር ቃል</p>
+                        </div>
+                        <div class="ui secondary segment">
+                            <p class="d-i-l">*********</p>
+                            @Html.ActionLink("ቀየር", "ChangePassword", "Profile", new { }, new { @class = "ui button ui button basic orange tiny right floated" })
+
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "item" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button class="ui button small basic">ውጣ</button>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

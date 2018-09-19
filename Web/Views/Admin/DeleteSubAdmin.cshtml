@@ -1,0 +1,47 @@
+﻿@model Domain.Infrastructure.User
+
+@{
+    ViewBag.Title = "Delete Sub Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header header-text">Delete Sub Admin</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+                    @using (Html.BeginForm("DeleteSubAdmin", "Admin", FormMethod.Post, new { @class = "ui form", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                         
+                        <div class="field">
+                            <label>Email </label>
+                            <h3>@Model.Email</h3>
+                        </div>
+                        <div class="field">
+                            <p class="ui red">ARE YOU SURE YOU WANT TO DELETE THIS SUB ADMIN</p>
+                        </div>
+                        @Html.HiddenFor(model => model.Id)
+                        <button class="ui button red" type="submit">Delete</button>
+                        @Html.ActionLink("Cancel", "SubAdminList", new {}, new { @class = "ui button" })
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

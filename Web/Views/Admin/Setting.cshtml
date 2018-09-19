@@ -1,0 +1,54 @@
+﻿@model Domain.Infrastructure.User
+
+@{
+    ViewBag.Title = "Setting";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="ph"></div>
+
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header header-text">Settings</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                
+
+                <form class="ui form">
+
+                    
+                    <div class="field">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <p>Email</p>
+
+                            </div>
+                            <div class="ui secondary segment">
+                                <p class="d-i-l">@Model.Email</p>
+                                @Html.ActionLink("edit", "EditEmail", new { }, new { @class = "ui button ui button basic blue tiny right floated" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <p>Passowrd</p>
+                            </div>
+                            <div class="ui secondary segment">
+                                <p class="d-i-l">***********</p>
+                                @Html.ActionLink("change password", "ChangePassword", new { }, new { @class = "ui button basic blue tiny right floated" })
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

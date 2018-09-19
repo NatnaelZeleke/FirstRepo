@@ -1,0 +1,49 @@
+﻿@model Web.ViewModels.TenderTypeViewModel
+
+@{
+    ViewBag.Title = "Edit Tender Type";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Edit Tender</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+
+                    @using (Html.BeginForm("EditTenderType", "TenderType", FormMethod.Post, new { @class = "ui form", role = "form" }))
+                    {
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        <div class="field">
+                            <label>Name</label>
+                            @Html.TextBoxFor(model => model.Name)
+
+                        </div>
+                        <div class="field">
+                            <label>Name Amharic</label>
+                            @Html.TextBoxFor(model => model.NameAmharic)
+                            @Html.HiddenFor(model =>model.Id)
+                        </div>
+                        <button class="ui button green" type="submit">Save</button>
+                        @Html.ActionLink("Cancel", "Index", new { }, new { @class = "ui button basic" })
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,103 @@
+﻿@model Web.ViewModels.UserAccountViewModel
+
+@{
+    ViewBag.Title = "Manage User Account";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Manage user account</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+
+                <div class="ui segment">
+
+                    <table class="ui celled striped table">
+                        <thead>
+                        <tr>
+                            <th colspan="3">
+                                @Model.User.UserName account
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td class="right aligned">
+                                Email
+                            </td>
+                            <td>@Model.User.Email</td>
+                        </tr>
+                        <tr>
+                            <td class="right aligned">
+                                Full Name
+                            </td>
+                            <td>@Model.User.UserName</td>
+                        </tr> 
+
+                        </tbody>
+                    </table>
+
+                </div>
+                
+                <div class="ui segment">
+
+                    <table class="ui celled striped table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Account Information
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td class="right aligned">
+                                    Registered On Chereta Application
+                                </td>
+                                <td>@Model.Account.RegisteredOn</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    Accounut Expiration Date
+                                </td>
+                                <td>@Model.Account.AccountExpirationDate</td>
+                            </tr> 
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="ui segment">
+
+                    @Html.ActionLink("RENEW ACCOUNT", "RenewAccount","UserAccount", new { id = Model.User.Id }, new { @class = "ui button red" })  
+                                    
+                    
+                </div>
+                <div class="ui segment">
+                    @Html.ActionLink("SUBTRACT TIME FROM EXPIRATION DATE", "DeRenewAccount","UserAccount", new { id = Model.User.Id }, new { @class = "ui button green" })                     
+                </div>
+                <div class="ui segment">
+
+                    @Html.ActionLink("DELETE ACCOUNT", "DeleteUser","UserAccount", new { id = Model.User.Id }, new { @class = "ui button red" })  
+                                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

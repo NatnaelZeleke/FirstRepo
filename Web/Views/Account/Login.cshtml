@@ -1,0 +1,76 @@
+﻿@using Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutSignIn.cshtml";
+}
+
+
+
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("Index","Home")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="bl">ግባ</span></p>
+    </a>
+</div>
+
+<div class="ui container main_con">
+
+    <div class="ui center aligned container">
+        <div class="ui grid">
+            <div class="sc">
+
+                <div>
+                    <div class="ph"></div>
+                    <div class="background-img m_c_c fc" style="background-image: url('../../Content/images/logo-w-1.png')">
+
+                    </div>
+
+                    <div class="center aligned row">
+                        <p></p>
+                        <div class="column">
+                            <p>ማንኛውም ጨረታ አያምልጦ</p>
+                        </div>
+                    </div>
+                    <div class="ph"></div>
+                </div>
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "ui form", role = "form" }))
+                {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="field">
+                            <!--<label>Username</label>-->
+                            <div class="ui left icon input">
+
+                                @Html.TextBoxFor(m => m.Email,new {placeholder="ኢሜል"})
+                                <i class="user icon"></i>
+                            </div>
+
+                        </div>
+                        <div class="field">
+                            <!--<label>Password</label>-->
+                            <div class="ui left icon input">
+                                @Html.PasswordFor(m => m.Password,new {placeholder="የይለፍ ቃል"})
+                                <i class="lock icon"></i>
+                            </div>
+                        </div>
+                        <div class="ui field">
+                            <button class="ui button fluid orange" type="submit">ግባ</button>
+                        </div>
+
+                    }
+            </div>
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+        <p><a class="center" href="@Url.Action("ForgotPassword")">የይለፍ ቃል ረስቻለሁ?</a></p>
+        <p><a href="@Url.Action("SignUp","Account")">ካልተመዘገቡ አዲስ አካውንት ይፍጠሩ</a></p>
+    </div>
+</div>
+
+ 

@@ -1,0 +1,111 @@
+﻿@model Web.ViewModels.TenderViewModel
+
+@{
+    ViewBag.Title = "Tender";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{
+    var od = Model.OpeningDay?.ToString("yyyy MMMM dd h:mm tt");
+    var cd = Model.ClosingDay?.ToString("yyyy MMMM dd h:mm tt");
+}
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header">Tender Info</h2>
+                <p></p>
+            </div>
+             <div class="ui  text container">
+             
+                @Html.ActionLink("Create new Tender","AddTender",new {},new {@class="ui basic blue  button right floated"})
+            </div>
+            <div class="sixteen wide computer column">
+
+                <div class="ui segment">
+
+                    <table class="ui celled striped table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    @Model.TenderTitle
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td class="right aligned">
+                                Tender Type
+                            </td>
+                            <td>@Model.TenderType.Name</td>
+                        </tr>
+                                       
+                            <tr>
+                                <td class="right aligned">
+                                    Opening Date
+                                </td>
+                                <td>@od</td>
+                                  
+
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    Closing Date
+                                </td>
+                                <td>@cd</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    Description
+                                </td>
+                                <td>@Model.Description</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    Address
+                                </td>
+                                <td>@Model.Address</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    Posted On
+                                </td>
+                                <td>@Model.PostedOn.ToString("dd MMMM yyyy ")</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    News Paper
+                                </td>
+                                <td>@Model.NewsPaper.Name</td>
+                            </tr>
+                            <tr>
+                                <td class="right aligned">
+                                    News Paper Publish Date
+                                </td>
+                                <td>
+                                        @Model.NewsPaperPublishDate.ToString("dd MMMM yyyy")
+                                    </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="ui segment">
+
+                    @Html.ActionLink("edit", "EditTender", new { id = Model.Id }, new { @class = "ui button green" })
+                    @Html.ActionLink("delete", "DeleteTender", new { id = Model.Id }, new { @class = "ui button red" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

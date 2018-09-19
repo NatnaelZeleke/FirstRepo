@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/images/favicon.ico" />
+    <title>@ViewBag.Title</title>
+
+
+    <link href="~/Content/semantic.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/semantic.min.js"></script>
+    @*    <script src="~/Scripts/common.js"></script>*@
+    @RenderSection("Script", required: false)
+    @RenderSection("Style", required: false)
+
+</head>
+<body>
+    @RenderBody()
+    <div class="ph"></div>
+    <div class="footer">
+        <div class="ui labeled icon fluid four item compact menu c_menu inverted">
+
+            <a class="item" href="@Url.Action("Index", "User")">
+                <i class="home icon"></i>
+                የጨረታ ዝርዝር
+            </a>
+
+            <a class="item" href="@Url.Action("SavedTenders", "User")">
+                <i class="sidebar icon"></i>
+                ሴቭ ያደረጉት ጨረታዎች
+            </a>
+            <a class="item " href="@Url.Action("TenderReport", "User")">
+                <i class="bar chart icon"></i>
+                የጨረታ ሪፖርት
+            </a>
+            <a class="item" href="@Url.Action("MyAccount", "User")">
+                <i class="user icon"></i>
+                አካውንት
+            </a>
+        </div>
+    </div>
+</body>
+</html>

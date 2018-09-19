@@ -1,0 +1,93 @@
+﻿@model Web.ViewModels.SalesManViewModel
+
+@{
+    ViewBag.Title = "sales man";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var count = 1;
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <a href="@Request.UrlReferrer" class="circular ui icon button blue">
+                        <i class="icon arrow left"></i>
+                </a>
+                <h2 class="ui dividing header">  
+                      @Model.User.UserName (sales man)</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+
+                    <div class="field">
+                         
+                        <p>@Model.User.UserName</p>
+                    </div>
+
+                    <div class="field">
+                         
+                        <p>@Model.User.PhoneNumber</p>
+                    </div>
+
+                    <div class="field">
+                         
+                        <p>@Model.User.Email</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sixteen wide computer column">
+                @if (!Model.UsersBySales.Any())
+                {
+                    <div class="ui grid">
+                        <h3>No sales man registered yet!!!</h3>
+                    </div>
+                }
+                else
+                {
+                    <div class="ui main text container">
+                        <h4 class="ui dividing header"><label class="ui label red">@Model.CustomersCount</label> customer registered by @Model.User.UserName</h4>
+                        <p></p>
+                    </div>
+                        <table class="ui selectable celled table compact">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Full Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var s in Model.UsersBySales)
+                                {
+
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@s.FullName</td>
+                                        <td>@s.PhoneNumber</td>
+                                        <td>@s.Email</td>
+                                    </tr>
+                                    count++;
+                                }
+
+
+                            </tbody>
+
+                        </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

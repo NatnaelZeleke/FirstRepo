@@ -1,0 +1,101 @@
+﻿@using Domain.Utils
+@using Web.ViewModels
+@model Domain.Infrastructure.User
+
+@{
+    ViewBag.Title = "ARE YOU SURE";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Script
+{
+    <script>
+        $(document).ready(function () {
+            $('#RenewAccount').form({
+                fields: {
+                    RenewalTimeSpan: {
+                        identifier: 'RenewalTimeSpan',
+                        rules: [
+                            {
+                                type: 'checked',
+                                prompt: 'Choose at least one renewal type'
+                            }
+                        ]
+                    }
+                },
+                on: 'submit'
+            });
+        });
+    </script>
+
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+    </div>
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+        <div class="ui grid">
+            <div class="ui text container">
+                <h2 class="ui dividing header">Renew user account</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+                    @using (Html.BeginForm("RenewAccount", "UserAccount", FormMethod.Post, new { @class = "ui form", role = "form",id="RenewAccount" }))
+                    {
+                        @Html.AntiForgeryToken()
+                         
+                        <div class="field">
+                            <label>email</label>
+                            <p>@Model.Email</p>
+                        </div>
+                        <div class="field">
+                            <label>Full Name</label>
+                            <p>@Model.UserName</p>
+                        </div>
+                        <div class="field">
+                            <p class="ui red">ARE YOU SURE YOU WANT TO RENEW THIS USER ACCOUNT.</p>
+                        </div>
+
+                        <div class="ui segment">
+                            <div class="field">
+                                <div class="ui error message"></div>
+                            </div>
+                            <div class="field">   
+                                <div class="ui radio">
+                                    <input type="radio" value="@((int)Enums.RenewalTimeSpan.SixMonth)" name="RenewalTimeSpan" id="1" />
+                                    <label for="1">Six Month</label>
+                                </div>                              
+                                
+                            </div>
+                            <div class="field"> 
+                                <div class="ui radio">
+                                    <input type="radio" value="@((int)Enums.RenewalTimeSpan.OneYear)" name="RenewalTimeSpan" id="2" />
+                                    <label for="2">One Year</label>
+                                </div>                                
+
+                            </div>
+
+                        </div>
+
+                         <div class="ui segment">
+                           
+                            <div class="field">   
+                                                             
+                                <label>If the user account is created by chereta.net workers; fill the password you used to create the account.</label>
+                                <input type="text" name="Password"/>
+                            </div>
+                            
+
+                        </div>
+                        @Html.HiddenFor(model => model.Id)
+                        <button class="ui button red" type="submit">RENEW</button>
+                        @Html.ActionLink("Cancel", "Index", new {}, new { @class = "ui button" })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

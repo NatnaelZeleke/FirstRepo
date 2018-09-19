@@ -1,0 +1,39 @@
+﻿@model Web.ViewModels.EditPhoneNumberViewModel
+
+@{
+    ViewBag.Title = "Edit Phone Number";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+<div class="ui one item fixed menu c_h">
+    <a href="@Url.Action("Settings","User")" class="item l_a bl">
+        <p><i class="chevron left icon bl"></i><span class="tc">ስልክ ቁጥር ማስተካከያ</span></p>
+    </a>
+</div>
+
+<div class="ui container main_con">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="sc">
+                <br>
+
+                @using (Html.BeginForm("EditPhoneNumber", "Profile", FormMethod.Post, new { @class = "ui form sixteen wide column", role = "form" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    <div class="ui field">
+                        <label>ስልክ ቁጥር</label>
+                        @Html.TextBoxFor(model => model.PhoneNumber)
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "f_e_m" })
+
+                    </div>
+                    <button class="ui button orange" type="submit">ሴቭ</button>
+                    @Html.ActionLink("ይቅር", "Settings","User", new { }, new { @class = "ui button basic" })
+
+                }
+
+            </div>
+        </div>
+
+    </div>
+</div>

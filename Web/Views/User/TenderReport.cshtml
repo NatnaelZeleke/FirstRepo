@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Web.ViewModels.NewsPaperViewModel>
+
+@{
+    ViewBag.Title = "Tender Report";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+@section Script
+{
+    <script src="../../scripts/Angular/vendor/angular.js"></script>
+    <script src="../../scripts/Angular/minified/modules.js"></script>
+    <script src="../../scripts/Angular/constant/urlConstants.js"></script>
+    <script src="../../scripts/Angular/services/searchService.js"></script>
+    <script src="../../scripts/Angular/controller/reportController.js"></script>
+}
+
+
+<div data-ng-app="app">
+    <div class="ui one item fixed menu c_h">
+        <div class="item">
+            <p>የጨረታ ሪፖርት</p>
+        </div>
+    </div>
+
+    <div class="ui container main_con" data-ng-controller="reportController">
+
+        <div class="ui container">
+            <div class="ui grid">
+
+                <div class="sc pr top2">
+
+                    <div class="ui active inverted dimmer" data-ng-class="isLoading()">
+                        <div class="ui loader"></div>
+                    </div>
+                    <div class="ph"></div>
+
+                    <div class="ui segment">
+                        <p>እስከ አሁን የወጡ የጨረታ ሪፖርት</p>
+                    </div>
+                     
+                        <table class="ui celled padded table unstackable">
+                            <thead>
+                                <tr>
+                                    <th class="single line">የጋዜጣ አይነት</th>
+                                    <th>የጨረታ ብዛት</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr data-ng-repeat="npr in allReport.TenderWithNewsPaperReport">
+                                    <td>
+                                        <p class="ui center aligned"> ከ {{npr.NameAmharic}}</p>
+                                    </td>
+                                    <td class="single line">
+                                         
+                                        <a href="/User/GroupedTender?GroupBy=1&amp;TenderSelectionId={{npr.Id}}" class="ui basic button tiny blue cb">
+
+                                            <label class="ui label circular blue">{{npr.Count}}</label> ጨረታዎች
+                                            <i class="icon angle right"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                   
+                    <div class="ph"></div>
+
+                    <div class="ui segment">
+                        <p>በጨረታ አይነት የተመሰረት ሪፖርት </p>
+                    </div>
+
+                     
+                        <table class="ui celled padded table unstackable">
+                            <thead>
+                                <tr>
+                                    <th class="line">የጨረታ አይነት</th>
+                                    <th>የጨረታ ብዛት</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="ttr in allReport.TenderWithTenderTypeReport">
+                                    <td>
+                                        <p class="ui center aligned  ">{{ttr.NameAmharic}}</p>
+                                    </td>
+                                    <td class="line">
+                                        <a href="/User/GroupedTender?GroupBy=2&amp;TenderSelectionId={{ttr.Id}}" class="ui basic button tiny blue cb">
+
+                                            <label class="ui label circular blue">{{ttr.Count}}</label> ጨረታዎች
+                                            <i class="icon angle right"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    
+
+                    <div class="ph">
+
+                    </div>
+                    <div class="ph">
+
+                    </div>
+                    <div class="ph">
+
+                    </div>
+                    <div class="ph">
+
+                    </div>
+                    <div class="ph">
+
+                    </div>
+                    <div class="ph">
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

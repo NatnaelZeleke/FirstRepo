@@ -1,0 +1,130 @@
+﻿@model Web.ViewModels.TenderViewModel
+
+@{
+    ViewBag.Title = "Add Tender";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+ 
+
+@section Script
+{
+
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+         $(document).ready(function () {
+            
+            $('.datep_time_picker').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('.date_picker').datetimepicker({
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+            });
+        });
+    </script>
+}
+
+<div class="ph"></div>
+    <div class="ui grid">
+        <div class="twelve wide column">
+
+        </div>
+
+    </div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui text container">
+                <h2 class="ui dividing header">Add Tender</h2>
+                <p></p>
+            </div>
+            <div class="sixteen wide computer column">
+                <div class="ui segment">
+                    @using (Html.BeginForm("AddTender", "Tender", FormMethod.Post, new { @class = "ui form error", role = "form" }))
+                    {
+ 
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        <div class="ui field">
+                            <label>Tender Title</label>
+                            @Html.TextAreaFor(model => model.TenderTitle)
+                        </div>
+                        <div class="ui field">
+                            <label>Tender Type</label>
+                            <select name="TenderTypeId" class="ui dropdown">
+                                @foreach (var tt in Model.TenderTypes)
+                                {
+                                    <option value="@tt.Id">@tt.NameAmharic</option>
+                                }
+                            </select>
+                                 
+                        </div>
+                        <div class="ui field">
+                            <label>Openng Day</label>
+                            <input name="OpeningDay" id="OpeningDay" class="datep_time_picker" data-date-format="dd MM yyyy HH:ii P" readonly/>
+                            @*                                @Html.TextBoxFor(model => model.OpeningDay,new {id="openingDay"})*@
+                        </div>
+                        <div class="ui field">
+                            <label>Closing Day</label>
+                            <input name="ClosingDay" id="ClosingDay" class="datep_time_picker" data-date-format="dd MM yyyy HH:ii P" readonly/>
+                            @*                                @Html.TextBoxFor(model => model.ClosingDay,new {id="closingDay"})*@
+                        </div>
+                        <div class="ui field">
+                            <label>Description</label>
+                            @Html.TextAreaFor(model => model.Description)
+                        </div>
+                        <div class="ui field">
+                            <label>Address</label>
+                            @Html.TextBoxFor(model => model.Address)
+                        </div>
+                        <div class="ui field">
+                            <label>News Paper</label>
+                            <select name="NewsPaperId" class="ui dropdown">
+                                @foreach (var np in Model.NewsPapers)
+                                {
+                                    <option value="@np.Id">@np.NameAmharic</option>
+                                }
+                            </select>
+                                 
+                        </div>
+                        <div class="ui field">
+                            <label>News Paper Publish Date</label>
+                            <input name="NewsPaperPublishDate" id="NewsPaperPublishDate" class="date_picker" data-date-format="dd MM yyyy" readonly/> 
+                        </div>
+                        <div class="ui field">
+                            <button class="ui button primary" type="submit">post</button>
+                                 
+                            @Html.ActionLink("Cancel","Index",new {},new {@class="ui button basic"})
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+<div class="ph"></div>
+
+

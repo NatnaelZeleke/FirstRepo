@@ -1,0 +1,47 @@
+[
+  {
+    "Id":1,
+    "TenderTypeId":2,
+    "OpeningDay":"\/Date(1515531600000)\/",
+    "Address":"Address of the application",
+    "PostedOn":"02/02/2018",
+    "TenderTitle":"tender 1",
+    "Description":"Description of the tender",
+    "ClosingDay":"\/Date(1515531600000)\/",
+    "TenderType":{
+      "Id":2,
+      "Name":"cheret name in english",
+      "NameAmharic":"chereta type name in amharic"
+    }
+  },
+  {
+    "Id":1,
+    "TenderTypeId":2,
+    "OpeningDay":"\/Date(1515531600000)\/",
+    "Address":"Address of the application",
+    "PostedOn":"02/02/2018",
+    "TenderTitle":"tender 2",
+    "Description":"Description of the tender",
+    "ClosingDay":"\/Date(1515531600000)\/",
+    "TenderType":{
+      "Id":2,
+      "Name":"cheret name in english",
+      "NameAmharic":"chereta type name in amharic"
+    }
+  },
+  {
+    "Id":1,
+    "TenderTypeId":2,
+    "OpeningDay":"\/Date(1515531600000)\/",
+    "Address":"Address of the application",
+    "PostedOn":"02/02/2018",
+    "TenderTitle":"tender 3",
+    "Description":"Description of the tender",
+    "ClosingDay":"\/Date(1515531600000)\/",
+    "TenderType":{
+      "Id":2,
+      "Name":"cheret name in english",
+      "NameAmharic":"chereta type name in amharic"
+    }
+  }
+]

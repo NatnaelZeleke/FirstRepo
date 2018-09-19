@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Web.ViewModels.TenderViewModel>
+
+@{
+    ViewBag.Title = "User Saved Tenders";
+    Layout = "~/Views/Shared/_LayoutApp.cshtml";
+}
+
+@section Script
+{     
+    <script src="../../scripts/Angular/vendor/angular.js"></script>
+    <script src="../../Scripts/Angular/vendor/moment.js"></script>
+    <script src="../../Scripts/Angular/vendor/angular-moment.js"></script>
+    <script src="../../scripts/Angular/minified/module_w_moment.js"></script>
+    <script src="../../scripts/Angular/constant/urlConstants.js"></script>
+    <script src="../../scripts/Angular/services/dataSenderService.js"></script>
+    <script src="../../scripts/Angular/directive/semantic_ui_directives.js"></script>
+    <script src="../../scripts/Angular/directive/removeDirective.js"></script>
+    <script src="../../scripts/Angular/controller/savedTenderController.js"></script>
+}
+
+<div data-ng-app="app">
+    <div class="ui one item fixed menu c_h">
+        <div class="item">
+            <p>ሴቭ ያደረጉት ጨረታ</p>
+        </div>
+    </div>
+
+
+    <div class="ui container main_con" data-ng-controller="savedTenderController">
+
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="sc">
+
+                    <div class="ph"></div>
+
+
+                    <div data-ng-repeat="t in tenders">
+                        <div class="ui segments fourteen wide column tender"  wdrop>
+                            <div class="ui segment th">
+                                <p class="tt">{{t.TenderTitle}}</p>
+                                <p class="tty">{{t.TenderType.NameAmharic}}</p>
+                                <div class="ui right pointing dropdown icon basic mini button rm" dd >
+                                    <i class="ellipsis vertical icon"></i>
+                                    <div class="menu" id="{{t.Id}}" remove>
+                                        <div class="item">
+                                            <div class="ui red empty circular label"></div>
+                                            አጥፋው
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui segment">
+                                <label class="ui basic label mini status_btn green" data-ng-if="t.IsOpen">ክፍት</label>
+                                    <label class="ui basic label mini status_btn red" data-ng-if="!t.IsOpen">ተዘግቷል</label>
+                                <div class="content">
+                                    <p class="cd"><i class="icon calendar orange"></i>መዝጊያ ቀን : {{t.ClosingDay |amUtcOffset : +00:00| amDateFormat:'MMMM Do YYYY, h:mm a'}}
+                                    <span data-ng-show="t.ClosingDay == null">ያልተገለጸ</span>
+                                    </p>
+                                    <p class="od"><i class="icon calendar orange"></i>መክፈቻ ቀን : {{t.OpeningDay |amUtcOffset : +00:00| amDateFormat:'MMMM Do YYYY, h:mm a'}}
+                                    <span data-ng-show="t.OpeningDay == null">ያልተገለጸ</span>
+                                    </p>
+
+                                </div>
+                                <div class="content">
+                                    <div class="description clearfix">
+                                        <div class="ui accordion">
+                                            <div class="title">
+                                                <i class="dropdown icon"></i>
+                                                ተጨማሪ መረጃ
+                                            </div>
+                                            <div class="content mi">
+
+                                                <p class="sp des"><i class="ui icon chevron circle right"></i> {{t.Description}}
+                                                </p>
+                                                <!--<p class="sa">Addis Ababa.</p>-->
+                                                <p class="sp"><i class="ui icon chevron circle right"></i> {{t.Address}}
+                                                </p>
+                                                <p class="sp"><i class="ui icon chevron circle right"></i>ፖስት የተደረገበት ቀን : {{t.PostedOn | amCalendar}}
+                                                </p>
+                                                <!--<p class="sa">In the morning.</p>-->
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ui segment snp" >
+                                <p>ከ <span>{{t.NewsPaper.NameAmharic}} ጋዜጣ</span> የ {{t.NewsPaperPublishDate | amDateFormat:'MMMM Do '}} እትም</p>
+                            </div>
+
+                        </div>
+
+
+                        <h4 class="ui horizontal divider header d_h">{{$index + 1}}</h4>
+                        <p></p>
+                    </div>
+                    <div data-ng-if="tenders.length == 0" class="ng-cloak">
+                        <div class="ph">
+
+                        </div>
+                         <p></p>
+                        <p class="fc">ጨረታን ለሌላ ግዜ ለማየት ወይም ለማስታወስ ከፈለጉ ሴቭ የሚለውን በትን ይጫኑ</p>
+                    </div>
+
+                    <div class="ui segment" data-ng-class="isLoading()">
+                            <p class="fc" style="font-size: 16px;">{{message}}</p>
+                            <div class="ph">
+                            </div>                            
+                        </div>
+                    <div class="ph"></div>
+                     
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

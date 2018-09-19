@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/images/favicon.ico" />
+    <title>@ViewBag.Title</title>
+
+
+    <link href="~/Content/semantic.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    @RenderSection("Style", required: false)
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/semantic.min.js"></script>
+    <script src="~/Scripts/common.js"></script>
+    @RenderSection("Script", required: false)
+    
+    
+
+</head>
+<body>
+
+    <div class="ui fixed blue inverted menu">
+        <a class="header item">
+            <img src="../../Content/images/logo.png" />
+            @if (User.IsInRole("Admin"))
+            {
+                <p> Super Admin</p>
+            }
+            else if (User.IsInRole("SubAdmin"))
+            {
+                <p> Sub Admin</p>
+            }
+        </a>
+        <div class="right menu">
+            @Html.Partial("_AccountPartial")
+        </div>
+    </div>
+
+
+    <div>
+        <div class="full_height">
+            <div class="toc">
+                <div class="ui vertical inverted menu" style="width: 250px;">
+
+                    <div class="item">
+                        <br />
+                    </div>
+
+                    <p></p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="item">
+                            <div class="header">Create Sub Admins</div>
+                            <div class="menu">
+                                @Html.ActionLink("Sub Admins list", "SubAdminList", "Admin", null, new { @class = "item" })
+                                @Html.ActionLink("Create Sub Admin", "AddSubAdmin", "Admin", null, new { @class = "item" })
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="header">Create News Paper</div>
+                            <div class="menu">
+                                @Html.ActionLink("News paper list", "Index", "NewsPaper", null, new { @class = "item" })
+                                @Html.ActionLink("Create news paper", "AddNewsPaper", "NewsPaper", null, new { @class = "item" })
+                            </div>
+                        </div>
+                        
+
+                    }
+                    <div class="item">
+                            <div class="header">Renew User Accounts</div>
+                            <div class="menu">
+                                @Html.ActionLink("Find User", "Index", "UserAccount", null, new { @class = "item" })
+                            </div>
+                        </div>
+                    <div class="item">
+                        <div class="header">Tender</div>
+                        <div class="menu">
+                            @Html.ActionLink("Tender list", "Index", "Tender", null, new { @class = "item" })
+                            @Html.ActionLink("Add Tender", "AddTender", "Tender", null, new { @class = "item" })
+                        </div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="header">Tender Types</div>
+                        <div class="menu">
+                            @Html.ActionLink("Tender types list", "Index", "TenderType", null, new { @class = "item" })
+                            @Html.ActionLink("Add Tender Type", "AddTenderType", "TenderType", null, new { @class = "item" })
+                        </div>
+                    </div>
+                    
+
+                    
+@*                    <div class="item">*@
+@*                        <div class="header">Parse text</div>*@
+@*                        <div class="menu">*@
+@*                            @Html.ActionLink("Parse text", "ParseText", "Admin", null, new { @class = "item" })*@
+@*                            *@
+@*                        </div>*@
+@*                    </div>*@
+                    <div class="item">
+                        <div class="header">User List</div>
+                        <div class="menu">
+                            @Html.ActionLink("User List", "UsersList", "Admin", null, new { @class = "item" })
+                            
+                        </div>
+                    </div>
+                     <div class="item">
+                        <div class="header">Sales Man</div>
+                        <div class="menu">
+                            @Html.ActionLink("Sales man list", "SalesManList", "Admin", null, new { @class = "item" })
+                            
+                        </div>
+                    </div>
+                     <div class="item">
+                            <div class="header">Send Email to users</div>
+                            <div class="menu">
+                                @Html.ActionLink("Send Email", "SendBulkEmail", "Admin", null, new { @class = "item" })
+                            </div>
+                        </div>
+                    <div class="item">
+                        <div class="header">Setting</div>
+                        <div class="menu">
+                            @Html.ActionLink("Setting", "Setting", "Admin", null, new { @class = "item" })
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="article">
+
+                @RenderBody()
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

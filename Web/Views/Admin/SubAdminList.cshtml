@@ -1,0 +1,75 @@
+﻿@model System.Collections.Generic.IEnumerable<Domain.Infrastructure.User>
+
+@{
+    ViewBag.Title = "Sub Admin List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var count = 1;
+}
+
+<div class="ph"></div>
+<div class="ui grid">
+    <div class="twelve wide column">
+
+    </div>
+
+</div>
+<div class="ui container grid">
+    <div class="ui ten wide column centered">
+
+        <div class="ui grid">
+            <div class="ui main text container">
+                <h2 class="ui dividing header header-text">List of Sub Admins</h2>
+                <p></p>
+            </div>
+            <div class="ui  text container">
+             
+                @Html.ActionLink("Create new sub admin","AddSubAdmin",new {},new {@class="ui basic blue mini button right floated"})
+            </div>
+            <div class="sixteen wide computer column">
+                 @if (!Model.Any())
+                 {
+                     <div class="ui grid">
+                        <h3>You have not created any sub admins yet. @Html.ActionLink("Create New SubAdmins", "AddSubAdmin")</h3>
+                    </div>
+                 }
+                 else
+                 {
+                     <table class="ui selectable celled table compact">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Email</th>
+                                 
+                                <th>more</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var sub in Model)
+                            {
+
+                                <tr>
+                                    <td>@count</td>
+                                     
+                                    <td>@sub.Email</td>
+                                     
+                                    <td>
+                                        @Html.ActionLink("Delete","DeleteSubAdmin",new {id=sub.Id},new {@class="ui button red basic mini"})                                         
+                                    </td>
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+
+                    </table>
+                 }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

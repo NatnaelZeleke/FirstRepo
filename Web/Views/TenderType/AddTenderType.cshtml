@@ -1,0 +1,51 @@
+﻿@model Web.ViewModels.TenderTypeViewModel
+
+@{
+    ViewBag.Title = "Add new tender type";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="ph"></div>
+    <div class="ui grid">
+        <div class="twelve wide column">
+
+        </div>
+
+    </div>
+    <div class="ui container grid">
+        <div class="ui ten wide column centered">
+
+            <div class="ui grid">
+                <div class="ui main text container">
+                    <h2 class="ui dividing header header-text">Create Tender Type</h2>
+                    <p></p>
+                </div>
+                <div class="sixteen wide computer column">
+                    <div class="ui segment">
+                        @using (Html.BeginForm("AddTenderType", "TenderType", FormMethod.Post, new { @class = "ui form error", role = "form" }))
+                        {
+ 
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+                            <div class="ui field">
+                                <label>Name</label>
+                                @Html.TextBoxFor(model => model.Name)
+                            </div>
+                            <div class="ui field">
+                                <label>Name Amharic</label>
+                                @Html.TextBoxFor(model => model.NameAmharic)
+                            </div>
+                            
+                            <div class="ui field">
+                                <button class="ui button primary" type="submit">create</button>
+                                 
+                                @Html.ActionLink("Cancel","Index",new {},new {@class="ui button basic"})
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

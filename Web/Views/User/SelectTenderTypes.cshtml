@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Web.ViewModels.TenderTypeViewModel>
+@{
+    ViewBag.Title = "Select Tender Types";
+    Layout = "~/Views/Shared/_LayoutSignIn.cshtml";
+}
+
+@section Script
+{
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/semantic.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#chooseTenderType').form({
+                fields: {
+                    selectedTenderTypeIds: {
+                        identifier: 'selectedTenderTypeIds',
+                        rules: [
+                            {
+                                type   : 'checked',
+                                prompt : 'ቢያንስ አንድ የጨረታ አይነት መምረጥ አለቦት'
+                            }
+                        ]
+                    }
+                },
+                on: 'submit',
+                onSuccess:function (response) {
+                    $("#chooseTenderType").addClass("loading");
+                }
+            });
+        });
+    </script>
+}
+
+<div class="ui one item fixed menu c_h">
+    <div class="item">
+        <p>ጨረታ</p>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("SelectTenderTypes", "User", FormMethod.Post, new { @class = "ui form error", role = "form", id="chooseTenderType" }))
+{
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+
+
+    <div class="ui container main_con">
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="sc">
+
+                    <br/>
+                    <div class="ui segment">
+                        <h4 class="sn d_i_b">ምን አይነት ጨረታ ማየት ይፈልጋሉ</h4>
+                    </div>
+                    <div class="ui error message"></div>
+                    <div class="ui segments fourteen wide column" id="other">
+
+                        @foreach (var tt in Model)
+                        {
+                            <div class="ui segment">
+                                <div class="ui checkbox">
+                                    <input name="selectedTenderTypeIds" type="checkbox" value="@tt.Id">
+                                    <label>@tt.NameAmharic</label>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+                    <div class="ph"></div>
+                    <div class="ph"></div>
+                    <div class="ph"></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="ph"></div>
+
+    <div class="footer">
+        <div class="ui one item menu" style="padding: 10px;">
+            <button type="submit" class="ui button fc_i orange">ጨርስ</button>
+        </div>
+    </div>
+
+}
+
+
